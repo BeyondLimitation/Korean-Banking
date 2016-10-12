@@ -9,6 +9,10 @@ MAINTAINER leeheechan <leeheechan1@gmail.com>
 
 #필수 보안(망할...)패키지들 /korea-shit폴더와 함깨 추가
 COPY korea-shit /korea-shit
+COPY entrypoint.sh /entrypoint.sh
+
+#Entrypoint.sh 실행 권한 부여
+RUN chmod +x entrypoint.sh
 
 #Firefox 설치
 RUN apt-get update && apt-get install -y firefox
@@ -39,6 +43,7 @@ RUN apt-get update && apt-get install -y gksu \
     && rm -rf /var/lib/apt/lists/*
 # 작업 디랙토리 이동
 WORKDIR /korea-shit
+
 #패키지 설치 작업 준비
 RUN apt-get update
 
@@ -51,5 +56,18 @@ RUN export uid=1000 gid=1000 && \
     chmod 0440 /etc/sudoers.d/korean && \
     chown ${uid}:${gid} -R /home/korean
 
-USER korean
 ENV HOME /home/korean
+RUN chmod 750 /home/korean
+
+#보안 프로그램 설치 작업
+RUN cd IBK && dpkg -i linux-netizen-103-x86_64.deb && dpkg -i veraport_amd64.deb && dpkg -i I3GInstall.amd64.deb && dpkg -i keysharpbiz_amd64.deb
+
+#보안 프로그램 Daemon 미리 시작
+RUN /usr/lib/mozilla/plugins/Interezen/I3G_Daemon &
+
+#사용자 korean
+USER korean
+
+#앱 초기 실행 작업을 위한 entrypoint.sh 실행
+WORKDIR /
+CMD /usr/bin/firefox https://www.google.com
