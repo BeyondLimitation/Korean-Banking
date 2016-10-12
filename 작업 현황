@@ -1,0 +1,15 @@
+2016년 10월 5일 linux-netizen 설치함
+
+1.linux-netizen 설치
+2.veraport 설치
+3.I3GInstall 설치(단말기 지정 서비스)
+
+2016년 10월 12일
+최종 정리
+linux-netizen-103-x86_64
+veraport_amd64
+I3GInstall
+keysharpbiz_amd64 순으로 설치
+
+그 다음 ENTRYPOINT ["/usr/bin/firefox", "https://open.ibk.co.kr"]
+CMD sudo /usr/lib/mozilla/plugins/Interezen/I3G_Daemon 로 firefox를 시작 시키고 I3G_Daemon 구동

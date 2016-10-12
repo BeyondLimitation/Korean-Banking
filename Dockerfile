@@ -9,7 +9,6 @@ MAINTAINER leeheechan <leeheechan1@gmail.com>
 
 #필수 보안(망할...)패키지들 /korea-shit폴더와 함깨 추가
 COPY korea-shit /korea-shit
-COPY entrypoint.sh /entrypoint.sh
 
 #Entrypoint.sh 실행 권한 부여
 RUN chmod +x entrypoint.sh
@@ -47,6 +46,9 @@ WORKDIR /korea-shit
 #패키지 설치 작업 준비
 RUN apt-get update
 
+#보안 프로그램 설치 작업
+RUN cd IBK && dpkg -i linux-netizen-103-x86_64.deb && dpkg -i veraport_amd64.deb && dpkg -i I3GInstall.amd64.deb && dpkg -i keysharpbiz_amd64.deb && dpkg -i UBIKey-1.0.0.1-64bit.deb
+
 #사용자 계정 설정
 RUN export uid=1000 gid=1000 && \
     mkdir -p /home/korean && \
@@ -57,17 +59,9 @@ RUN export uid=1000 gid=1000 && \
     chown ${uid}:${gid} -R /home/korean
 
 ENV HOME /home/korean
-RUN chmod 750 /home/korean
-
-#보안 프로그램 설치 작업
-RUN cd IBK && dpkg -i linux-netizen-103-x86_64.deb && dpkg -i veraport_amd64.deb && dpkg -i I3GInstall.amd64.deb && dpkg -i keysharpbiz_amd64.deb
-
-#보안 프로그램 Daemon 미리 시작
-RUN /usr/lib/mozilla/plugins/Interezen/I3G_Daemon &
-
-#사용자 korean
 USER korean
 
-#앱 초기 실행 작업을 위한 entrypoint.sh 실행
+#작업 시작
 WORKDIR /
-CMD /usr/bin/firefox https://www.google.com
+ENTRYPOINT ["/usr/bin/firefox", "https://open.ibk.co.kr"]
+CMD sudo /usr/lib/mozilla/plugins/Interezen/I3G_Daemon
