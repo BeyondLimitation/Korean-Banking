@@ -13,3 +13,10 @@ keysharpbiz_amd64 순으로 설치
 
 그 다음 ENTRYPOINT ["/usr/bin/firefox", "https://open.ibk.co.kr"]
 CMD sudo /usr/lib/mozilla/plugins/Interezen/I3G_Daemon 로 firefox를 시작 시키고 I3G_Daemon 구동
+
+2016년 10월 17일
+KB 보안 프로그램 설치 완료. 작동은 /opt/AhnLab/ASTx/astxdaemon을 root로 실행 후 컨테이너를 한 번 재실행하면 됨.
+
+TL;DR
+ROOT: /opt/AhnLab/ASTx/astxdaemon & 
+korean: sudo /opt/AhnLab/ASTx/astxdaemon &
