@@ -9,4 +9,4 @@ KEB Hana[X]
 Shinhan[X]
 Woori[X]
 
-지원 대상.
+지원 대상은 현재 X 표시된 것들 모두 입니다.
