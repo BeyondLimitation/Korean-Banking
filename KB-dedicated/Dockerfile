@@ -1,3 +1,4 @@
+# 이것은 개발단계에서 시험에 쓰인 것 입니다. KB만 됩니다.
 FROM ubuntu:14.04.5
 ENV TERM xterm
 COPY test /test
@@ -23,7 +24,7 @@ RUN apt-get update && apt-get install -y \
 
 #test
 RUN apt-get update && apt-get install -y gdebi && apt-get update
-RUN cd /test && gdebi astx_u64.deb && gdebi delfino-g3_amd64.deb
+RUN cd /test && gdebi astx_u64.deb && gdebi delfino-g3_amd64.deb && gdebi delfino-g3_amd64.deb
 
 #사용자 계정 설정
 USER root
