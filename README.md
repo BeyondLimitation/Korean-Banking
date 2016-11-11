@@ -30,4 +30,6 @@
 --stop-signal 은 systemd로 작동되는 container로 만들기 위함 입니다. systemd를 쓰기 위해 systemd로 종료되고 시작하기 위해 종료 signal이 설정되어야 합니다.
 
 이에 관한 전문적인 설명을 듣고 싶으시면 아래 링크를 누르시면 됩니다.
+
 http://developers.redhat.com/blog/2016/09/13/running-systemd-in-a-non-privileged-container/
+https://syslog.me/2016/03/31/an-init-system-in-a-docker-container/comment-page-1/#comment-9373
